@@ -1,0 +1,9 @@
+package pb;
+
+
+message file {
+required int32 type = 1;
+required string name = 2;
+required int32 remain = 3;
+required string content = 4;
+}
