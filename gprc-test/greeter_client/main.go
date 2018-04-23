@@ -47,12 +47,12 @@ func main() {
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 1 * time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5 * time.Second)
 	defer cancel()
 	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}else {
-		klog.Klog.Printf("Greeting: %s", r.Message)
+		log.Printf("Greeting: %s", r.Message)
 	}
 }
