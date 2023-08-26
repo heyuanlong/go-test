@@ -1,0 +1,45 @@
+基本核心功能
+    Pub/Sub 模式
+        nats sub <subject>
+        nats pub <subject> <message>
+
+
+    Request-Reply 模式
+        nats reply <subject> 'OK, I CAN HELP!!!'
+        nats request <subject> 'I need help!'
+
+
+    队列组功能 模式-负载平衡功能
+        nats sub <subject> --queue=队列名称
+        nats sub <subject> --queue=队列名称
+        nats pub <subject> <message>
+
+
+
+JetStream  
+    https://docs.nats.io/nats-concepts/jetstream
+
+    流是“消息存储”，每个流定义消息的存储方式以及保留的限制（持续时间、大小、兴趣）。
+    消费者是流的状态视图。 它充当客户端的接口，用于使用存储在流中的消息子集，并将跟踪客户端传递和确认的消息。
+
+    启用JetStream
+        nats-server -js
+    创建流
+        nats stream add my_stream
+    查看流的信息
+        nats stream info my_stream
+    发布一些消息到流中
+        nats pub foo --count=1000 --sleep 1s "publication #{{Count}} @ {{TimeStamp}}"
+    创建消费者
+        nats consumer add
+    消费者订阅
+        nats consumer next my_stream pull_consumer --count 1000
+
+
+使用 NATS 进行开发
+    https://docs.nats.io/using-nats/developer
+
+
+
+
+
